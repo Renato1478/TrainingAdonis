@@ -1,0 +1,139 @@
+@layout('layouts.auth')
+
+@section('title')
+Signup
+@endsection
+
+@section('extracss')
+<style>
+</style>
+@endsection
+
+@section('content')
+
+
+<form method="POST" action="{{ route('auth.store') }}" class="user d-flex p-4" style="flex-direction: column" enctype="multipart/form-data">
+
+<div class="text-center">
+    <h1 class="h4 text-gray-900 mb-4">Crie uma conta!</h1>
+</div>
+
+<!-- STEP 0 -->
+<div id="step-0">
+    @if(flashMessage('error'))
+        <span class="flashError">{{ flashMessage('error') }}</span>
+    @endif
+
+    {{ csrfField() }}
+    <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Nome"
+            value="{{ old('name','') }}">
+            @if(hasErrorFor('name'))
+                <span>{{ getErrorFor('name') }}</span>
+            @endif
+        </div>
+        <div class="col-sm-6">
+            <input type="text" class="form-control form-control-user" id="surname" name="surname" placeholder="Sobrenome"
+            value="{{ old('surname','') }}">
+            @if(hasErrorFor('surname'))
+                <span>{{ getErrorFor('surname') }}</span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <input type="text" class="form-control form-control-user" id="state" name="state" placeholder="Estado"
+            value="{{ old('state','') }}">
+            @if(hasErrorFor('state'))
+                <span>{{ getErrorFor('state') }}</span>
+            @endif
+        </div>
+        <div class="col-sm-6">
+            <input type="text" class="form-control form-control-user" id="county" name="county" placeholder="Município"
+            value="{{ old('county','') }}">
+            @if(hasErrorFor('county'))
+                <span>{{ getErrorFor('county') }}</span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control form-control-user" id="pet_type_pref" name="pet_type_pref" placeholder="Preferência de Pet (cão, gato ou outro)"
+        value="{{ old('pet_type_pref','') }}">
+        @if(hasErrorFor('pet_type_pref'))
+            <span>{{ getErrorFor('pet_type_pref') }}</span>
+        @endif
+    </div>
+    <button type="button" onclick="goTo('#step-1')" class="btn btn-primary btn-user btn-block">
+        Prosseguir
+    </button>
+</div>
+<!-- END STEP 0 -->
+
+<!-- STEP 1 -->
+<div id="step-1" class="d-none">
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email Address"
+            value="{{ old('email','') }}">
+            @if(hasErrorFor('email'))
+                <span>{{ getErrorFor('email') }}</span>
+            @endif
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+        </div>
+        <div class="col-sm-6">
+            <input type="password" class="form-control form-control-user" id="passwordConfirm" name="passwordConfirm" placeholder="Repeat Password">
+        </div>
+        @if(hasErrorFor('password'))
+            <span>{{ getErrorFor('password') }}</span>
+        @endif
+    </div>
+    <button type="button" onclick="goTo('#step-2')" class="btn btn-primary btn-user btn-block">
+        Prosseguir
+    </button>
+</div>
+<!-- END STEP 1 -->
+
+<!-- STEP 2 -->
+<div id="step-2" class="d-none">
+    <label class="image">
+        <input type="file" name="profile_pic" id="profile_pic">
+        Escolha uma foto para seu perfil <i class="fa fa-fw fa-camera"></i>
+    </label>
+    <button type="submit" class="btn btn-primary btn-user btn-block">
+        Cadastrar-se
+    </button>
+</div>
+<!-- END STEP 2 -->
+
+<hr>
+<div class="text-center">
+    <a class="small" href="{{ route('auth.login') }}">Já possui uma conta? Entre!</a>
+</div>
+
+</form>
+
+@endsection
+
+@section('extra-js')
+<script>
+    
+    $('#profile_pic').change( function(){
+        thumbnail = this.files[0];
+        thumbnailURL = window.URL.createObjectURL(thumbnail);
+        $('.image').css('background-image', 'url(' + thumbnailURL + ')');
+    });
+
+    function goTo(step) {
+        $('#step-0').addClass('d-none');
+        $('#step-1').addClass('d-none');
+        $('#step-2').addClass('d-none');
+        $(step).removeClass('d-none');
+    }
+
+</script>
+@endsection

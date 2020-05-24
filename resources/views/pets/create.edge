@@ -1,0 +1,38 @@
+@layout('layouts.main')
+
+@section('title')
+  Register a Pet
+@endsection
+
+@section('extra-css')
+<style>
+</style>  
+@endsection
+
+@section('content')
+
+<div class="container">
+  <form method='POST' action="{{ route('pets.store') }}" enctype="multipart/form-data">
+      {{ csrfField() }}
+
+      @include('pets.fields')
+
+      <button class="btn btn-primary">Registrar</button>
+  </form>
+</div>
+
+@endsection
+
+@section('extra-js')
+<script>
+    
+    $('#main_pic').change( function(){
+        thumbnail = this.files[0];
+        thumbnailURL = window.URL.createObjectURL(thumbnail);
+        $('.image').css('background-image', 'url(' + thumbnailURL + ')');
+    });
+
+    $("#adoption_fee").mask("R$ ##,##");
+
+</script>
+@endsection

@@ -1,0 +1,44 @@
+@layout('layouts.main')
+
+@section('title')
+Home
+@endsection
+
+@section('extra-css')
+<style>
+.pets-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-row-gap: 30px;
+  grid-column-gap: 20px;
+  margin: 2%;
+}
+
+</style>
+@endsection
+
+@section('content')
+
+<!-- Page Heading -->
+<div class="mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Pets for adoption</h1>
+</div>
+
+<div class="card-deck mt-2 mb-4 pets-dashboard">
+  @each(pet in pets)
+  <a href="{{ route('pets.show', { id: pet.id }) }}">
+    <div class="pet-card" style="background-image: url('{{ assetsUrl('img/pets/' + pet.main_pic) }}')">
+      <div class="pet-card-content">
+        <div class="card-pet-address">
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> {{ pet.name }}
+        </div>
+        <div class="card-pet-name">
+          {{ pet.name }}
+        </div>
+      </div>
+    </div>
+  </a>
+  @endeach
+</div> 
+
+@endsection

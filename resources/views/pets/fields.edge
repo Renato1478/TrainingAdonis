@@ -1,0 +1,137 @@
+<div class="row">
+    <div class="col-md-4">
+        <label class="image mt-2">
+            <input type="file" name="main_pic" id="main_pic">
+            <i class="fa fa-camera"></i>
+        </label>
+    </div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="name">Nome</label>
+                <input type="text" class="form-control" id="name" name="name"
+                value="{{ old('name','') }}">
+                @if(hasErrorFor('name'))
+                    <span class="error">
+                        {{ getErrorFor('name') }}
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="breed">Raça</label>
+                <input type="text" class="form-control" id="breed" name="breed"
+                value="{{ old('breed','') }}">
+                @if(hasErrorFor('breed'))
+                    <span class="error">
+                        {{ getErrorFor('breed') }}
+                    </span>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="age">Idade</label>
+                <select class="form-control" id="age" name="age">
+                    <option value="recem-nascido">Recém-Nascido</option>
+                    <option value="jovem">Jovem</option>
+                    <option value="adulto">Adulto</option>
+                    <option value="idoso">Idoso</option>
+                </select>
+                @if(hasErrorFor('age'))
+                    <span class="error">
+                        {{ getErrorFor('age') }}
+                    </span>
+                @endif
+            </div>
+            <div class="form-group col-md-6">
+                <label for="gender">Gênero</label>
+                <select class="form-control" id="gender" name="gender">
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                </select>
+                @if(hasErrorFor('size'))
+                    <span class="error">
+                        {{ getErrorFor('size') }}
+                    </span>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="type">Tipo</label>
+                <select class="form-control" id="type" name="type">
+                    <option value="cao">cão</option>
+                    <option value="gato">gato</option>
+                    <option value="passaro">pássaro</option>
+                    <option value="outro">outro</option>
+                </select>
+                @if(hasErrorFor('type'))
+                    <span class="error">
+                        {{ getErrorFor('type') }}
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="size">Tamanho</label>
+                <select class="form-control" id="size" name="size">
+                    <option value="pequeno">pequeno</option>
+                    <option value="grande">grande</option>
+                    <option value="medio">médio</option>
+                </select>
+                @if(hasErrorFor('size'))
+                    <span class="error">
+                        {{ getErrorFor('size') }}
+                    </span>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="state">Estado</label>
+                <input type="text" class="form-control" id="state" name="state" value="{{ old('state','') }}">
+                @if(hasErrorFor('state'))
+                    <span class="error">
+                        {{ getErrorFor('state') }}
+                    </span>
+                @endif
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="county">Município</label>
+                <input type="text" class="form-control" id="county" name="county" value="{{ old('county','') }}">
+                @if(hasErrorFor('county'))
+                    <span class="error">
+                        {{ getErrorFor('county') }}
+                    </span>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 form-group">
+        <label for="breed">Custo de Adoção (opcional)</label>
+        <input type="text" class="form-control" id="adoption_fee" name="adoption_fee"
+        value="{{ old('adoption_fee','') }}">
+        @if(hasErrorFor('adoption_fee'))
+            <span class="error">
+                {{ getErrorFor('adoption_fee') }}
+            </span>
+        @endif
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="description">Descrição</label>
+            <textarea class="form-control" id="description" name="description" rows="4" style="resize: none">{{ old('description','') }}</textarea>
+            @if(hasErrorFor('description'))
+                <span class="error">
+                    {{ getErrorFor('description') }}
+                </span>
+            @endif
+        </div>
+    </div>
+</div>
+

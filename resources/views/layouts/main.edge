@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>
+    @!section('title')
+  </title>
+
+  <!-- Custom fonts for this template-->
+  {{ style('vendor/fontawesome-free/css/all.min.css') }}
+  {{ style('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i') }}
+  <!-- Custom styles for this template-->
+  {{ style('css/sb-admin-2.css') }}
+  {{ style('style') }}
+
+  @!section('extra-css')
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    @include('partials.sidebar')
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Topbar -->
+        @include('partials.topbar')
+        <!-- End of Topbar -->
+        
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          @if(flashMessage('error'))
+              <span class="flashError mb-4">{{flashMessage('error')}}</span>
+          @endif
+          @!section('content')
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      @include('partials.footer')
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+</body>
+
+<!-- Bootstrap core JavaScript-->
+{{ script('vendor/jquery/jquery.min.js') }}
+{{ script('vendor/jquery-mask/jquery.mask.min.js') }}
+{{ script('vendor/bootstrap/js/bootstrap.bundle.min.js') }}
+
+<!-- Core plugin JavaScript-->
+{{ script('vendor/jquery-easing/jquery.easing.min.js') }}
+
+<!-- Custom scripts for all pages-->
+{{ script('js/sb-admin-2.js') }}
+
+<!-- Page level plugins -->
+<!--  {{ script('vendor/chart.js/Chart.min.js') }}  -->
+
+<!-- Page level custom scripts -->
+<!--  {{ script('js/demo/chart-area-demo.js') }} -->
+<!--  {{ script('js/demo/chart-pie-demo.js') }}  -->
+
+<!-- Sweet Alert 2 -->
+{{ script('vendor/sweetAlert2/sweetAlert2.all.min.js') }}
+
+@!section('extra-js')
+
+@if(flashMessage('success'))
+<script>
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top',
+    showConfirmButton: false,
+    timerProgressBar: true,
+    background: 'rgb(79, 222, 39)',
+    timer: 6000,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  Toast.fire({
+    title: "{{flashMessage('success')}}"
+  })
+</script>
+@endif
+
+</html>
