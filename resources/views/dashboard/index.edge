@@ -42,3 +42,25 @@ Home
 </div> 
 
 @endsection
+
+@section('extra-js')
+<script>
+
+  function updateDashboard(){
+    const width = $(window).width();
+    const container = $('.pets-dashboard');
+
+    if (width < 700){
+      container.css("grid-template-columns","1fr 1fr 1fr");
+    } else if (width < 1000){
+      container.css("grid-template-columns","1fr 1fr 1fr 1fr");
+    } else {
+      container.css("grid-template-columns","1fr 1fr 1fr 1fr 1fr");
+    }
+  }
+
+  $(window).resize(updateDashboard);
+  $(document).ready(updateDashboard);
+
+</script>
+@endsection

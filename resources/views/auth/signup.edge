@@ -19,7 +19,7 @@ Signup
 </div>
 
 <!-- STEP 0 -->
-<div id="step-0">
+<div id="step-0" class="step">
     @if(flashMessage('error'))
         <span class="flashError">{{ flashMessage('error') }}</span>
     @endif
@@ -64,14 +64,14 @@ Signup
             <span>{{ getErrorFor('pet_type_pref') }}</span>
         @endif
     </div>
-    <button type="button" onclick="goTo('#step-1')" class="btn btn-primary btn-user btn-block">
+    <a href="#step-1" class="btn-step btn btn-primary btn-user btn-block">
         Prosseguir
-    </button>
+    </a>
 </div>
 <!-- END STEP 0 -->
 
 <!-- STEP 1 -->
-<div id="step-1" class="d-none">
+<div id="step-1" class="d-none step">
     <div class="form-group row">
         <div class="col-sm-12">
             <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email Address"
@@ -92,14 +92,14 @@ Signup
             <span>{{ getErrorFor('password') }}</span>
         @endif
     </div>
-    <button type="button" onclick="goTo('#step-2')" class="btn btn-primary btn-user btn-block">
+    <a type="button" href="#step-2" class="btn-step btn btn-primary btn-user btn-block">
         Prosseguir
-    </button>
+    </a>
 </div>
 <!-- END STEP 1 -->
 
 <!-- STEP 2 -->
-<div id="step-2" class="d-none">
+<div id="step-2" class="d-none step">
     <label class="image">
         <input type="file" name="profile_pic" id="profile_pic">
         Escolha uma foto para seu perfil <i class="fa fa-fw fa-camera"></i>
@@ -121,19 +121,32 @@ Signup
 
 @section('extra-js')
 <script>
-    
+    //STEPPER
+    $( document ).ready(function() {
+        step = window.location.hash;
+        if(!step) {
+            window.location.hash = '#step-0';
+        }
+    });
+
+    window.onhashchange = function () {
+        hideSteps();
+        $(window.location.hash).removeClass('d-none');
+    }
+
+    function hideSteps() {
+        $(".step").each(function() {
+            this.className += " d-none";
+        });
+    }
+
+    //IMAGE
     $('#profile_pic').change( function(){
         thumbnail = this.files[0];
         thumbnailURL = window.URL.createObjectURL(thumbnail);
         $('.image').css('background-image', 'url(' + thumbnailURL + ')');
     });
 
-    function goTo(step) {
-        $('#step-0').addClass('d-none');
-        $('#step-1').addClass('d-none');
-        $('#step-2').addClass('d-none');
-        $(step).removeClass('d-none');
-    }
 
 </script>
 @endsection
