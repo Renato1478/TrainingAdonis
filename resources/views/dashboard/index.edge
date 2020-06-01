@@ -24,13 +24,13 @@ Home
     <h1 class="h3 mb-0 text-gray-800">Pets for adoption</h1>
 </div>
 
-<div class="card-deck mt-2 mb-4 pets-dashboard">
+<div class="card-deck m-0 mt-2 mb-4 pets-dashboard">
   @each(pet in pets)
   <a href="{{ route('pets.show', { id: pet.id }) }}">
-    <div class="pet-card" style="background-image: url('{{ assetsUrl('img/pets/' + pet.main_pic) }}')">
+    <div class="pet-card" style="background-image: url('{{ assetsUrl('img/pets/' + pet.id + '/' + pet.main_pic) }}')">
       <div class="pet-card-content">
         <div class="card-pet-address">
-          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> {{ pet.name }}
+          <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> {{ pet.county }} ● {{ pet.state }} 
         </div>
         <div class="card-pet-name">
           {{ pet.name }}
@@ -50,9 +50,7 @@ Home
     const width = $(window).width();
     const container = $('.pets-dashboard');
 
-    if (width < 700){
-      container.css("grid-template-columns","1fr 1fr 1fr");
-    } else if (width < 1000){
+    if (width < 768){
       container.css("grid-template-columns","1fr 1fr 1fr 1fr");
     } else {
       container.css("grid-template-columns","1fr 1fr 1fr 1fr 1fr");

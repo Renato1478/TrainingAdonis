@@ -10,7 +10,11 @@ class Login {
 
   get messages() {
     return {
-      'required': 'O campo {{ field }} é requerido.',
+      'email.required': 'Você precisa fornecer um email.',
+      'email.unique': 'Esse email já existe.',
+      'email': 'Você precisa fornecer um email válido.',
+      'password.required': 'Você precisa fornecer uma senha.',
+      'password.unique': 'Você precisa fornecer uma senha.',
     }
   }
 

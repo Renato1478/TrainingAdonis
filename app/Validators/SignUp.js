@@ -4,7 +4,7 @@ class SignUp {
   get rules () {
     return {
       'email': 'required|email|unique:users',
-      'name': 'required|unique:users',
+      'name': 'required',
       'surname': 'required',
       'password': 'required',
       'state': 'required',
@@ -14,8 +14,10 @@ class SignUp {
 
   get messages() {
     return {
-      'required': 'O campo {{ field }} é requerido.',
-      'unique': 'Este {{ field }} já existe.'
+      'required': 'Você precisa fornecer um {{ field }}.',
+      'unique': 'Esse {{ field }} já existe.',
+      'email': 'Você precisa fornecer um email válido.',
+      'password.required': 'Você precisa fornecer uma senha.',
     }
   }
 

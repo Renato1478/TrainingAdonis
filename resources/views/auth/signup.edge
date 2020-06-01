@@ -30,14 +30,14 @@ Signup
             <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Nome"
             value="{{ old('name','') }}">
             @if(hasErrorFor('name'))
-                <span>{{ getErrorFor('name') }}</span>
+                <span >{{ getErrorFor('name') }}</span>
             @endif
         </div>
         <div class="col-sm-6">
             <input type="text" class="form-control form-control-user" id="surname" name="surname" placeholder="Sobrenome"
             value="{{ old('surname','') }}">
             @if(hasErrorFor('surname'))
-                <span>{{ getErrorFor('surname') }}</span>
+                <span >{{ getErrorFor('surname') }}</span>
             @endif
         </div>
     </div>
@@ -46,14 +46,14 @@ Signup
             <input type="text" class="form-control form-control-user" id="state" name="state" placeholder="Estado"
             value="{{ old('state','') }}">
             @if(hasErrorFor('state'))
-                <span>{{ getErrorFor('state') }}</span>
+                <span >{{ getErrorFor('state') }}</span>
             @endif
         </div>
         <div class="col-sm-6">
             <input type="text" class="form-control form-control-user" id="county" name="county" placeholder="Município"
             value="{{ old('county','') }}">
             @if(hasErrorFor('county'))
-                <span>{{ getErrorFor('county') }}</span>
+                <span >{{ getErrorFor('county') }}</span>
             @endif
         </div>
     </div>
@@ -61,7 +61,7 @@ Signup
         <input type="text" class="form-control form-control-user" id="pet_type_pref" name="pet_type_pref" placeholder="Preferência de Pet (cão, gato ou outro)"
         value="{{ old('pet_type_pref','') }}">
         @if(hasErrorFor('pet_type_pref'))
-            <span>{{ getErrorFor('pet_type_pref') }}</span>
+            <span >{{ getErrorFor('pet_type_pref') }}</span>
         @endif
     </div>
     <a href="#step-1" class="btn-step btn btn-primary btn-user btn-block">
@@ -77,7 +77,7 @@ Signup
             <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email Address"
             value="{{ old('email','') }}">
             @if(hasErrorFor('email'))
-                <span>{{ getErrorFor('email') }}</span>
+                <span >{{ getErrorFor('email') }}</span>
             @endif
         </div>
     </div>
@@ -89,7 +89,7 @@ Signup
             <input type="password" class="form-control form-control-user" id="passwordConfirm" name="passwordConfirm" placeholder="Repeat Password">
         </div>
         @if(hasErrorFor('password'))
-            <span>{{ getErrorFor('password') }}</span>
+            <span >{{ getErrorFor('password') }}</span>
         @endif
     </div>
     <a type="button" href="#step-2" class="btn-step btn btn-primary btn-user btn-block">

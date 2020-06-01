@@ -1,6 +1,6 @@
 'use strict'
 
-class CreatePet {
+class StorePet {
   get rules () {
     return {
       'name': 'required',
@@ -12,6 +12,7 @@ class CreatePet {
       'gender': 'required',
       'state': 'required',
       'county': 'required',
+      'main_pic': 'required',
     }
   }
 
@@ -30,4 +31,4 @@ class CreatePet {
   
 }
 
-module.exports = CreatePet
+module.exports = StorePet

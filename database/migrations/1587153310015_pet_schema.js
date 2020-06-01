@@ -20,7 +20,7 @@ class PetSchema extends Schema {
       table.string('state', 63).notNullable()
       table.string('county', 63).notNullable()
       table.enu('status', ['ativo','inativo','adotado']).notNullable().defaultTo('ativo')
-      table.string('main_pic', 255).notNullable()
+      table.string('main_pic', 255)
       table.timestamps()
     })
   }
