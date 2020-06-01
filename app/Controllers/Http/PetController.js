@@ -15,6 +15,7 @@ class PetController {
 
   async store ({ request, response, session, auth }) {
     try {
+      // SUBMIT THE PET TO DB //
       const petData = request.only([
           'name',
           'breed',
@@ -30,16 +31,19 @@ class PetController {
       ])
       petData.donor_id = auth.user.id
 
+      const pet = await Pet.create(petData) 
+      
+      // SUBMIT THE MAIN PICTURE // 
       const mainPic = request.file('main_pic', {
         types: ['image'],
         size: '2mb'
       })
 
       if(mainPic){
-        petData.main_pic = new Date().getTime()+'.'+mainPic.subtype
+        pet.main_pic = new Date().getTime() + mainPic.subtype
 
-        await mainPic.move(Helpers.publicPath('img/pets'), {
-            name: petData.main_pic,
+        await mainPic.move(Helpers.publicPath('img/pets/'+pet.id), {
+            name: pet.main_pic,
             overwrite: true
         })
     
@@ -48,13 +52,12 @@ class PetController {
             return response.redirect('back')
         }
       }
-
-      await Pet.create(petData)
+      pet.save()
 
       session.flash({success: 'Pet registrado com sucesso!' })
       return response.redirect('/') 
     } catch (error) {
-      session.flash({error: 'Ocorrou um erro! Caso persista, contate o suporte.'})
+      session.flash({error: error.message })
       return response.redirect('back')
     }
   }

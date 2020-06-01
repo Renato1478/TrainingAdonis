@@ -14,9 +14,9 @@ Route.get('/logout','AuthController.logout').as('auth.logout')
 Route.group(() => {
     Route.get('/','DashboardController.index').as('home')
     //PET
-    Route.get('pets/create','PetController.create').as('pets.create')
-    Route.get('pets/:id','PetController.show').as('pets.show')
-    Route.post('pets','PetController.store').as('pets.store').validator('CreatePet')
+    Route.resource('pets','PetController').validator(new Map([
+        [['pets.store'], ['StorePet']]
+    ]))
 }).middleware(['auth'])
 
 Route.get('*', ({view}) => {
