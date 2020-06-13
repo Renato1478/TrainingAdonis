@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="text-center">
-    <div class="error mx-auto" data-text="404">404</div>
+    <div class="error mx-auto" data-text="{{ error.status }}">{{ error.status }}</div>
     <p class="text-gray-500 mb-0">Parece houve um erro.</p>
+    <p class="text-gray-500 mb-0">{{ error.message }}</p>
     <a href="/">&larr; Voltar para o Início</a>
 </div>
 @endsection

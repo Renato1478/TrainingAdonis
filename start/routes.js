@@ -18,7 +18,3 @@ Route.group(() => {
         [['pets.store'], ['StorePet']]
     ]))
 }).middleware(['auth'])
-
-Route.get('*', ({view}) => {
-    return view.render("error.404")
-})
