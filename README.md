@@ -22,6 +22,6 @@ Run the following command to run startup migrations.
 adonis migration:run
 ```
 ### APPLICATION CONCEPT ####
-#   this app basically consists in a project for my learnings in the AdonisJS framework. 
+  this app basically consists in a project for my learnings in the AdonisJS framework. 
 
-#   The website's is to help pets and adopter to find each other, sending adoption requests to owners that will have an account in the application,being possibly to find your little buddy on the dashboard or leaving the pet for adoption if you can't take care of the animal.
+  The website's is to help pets and adopter to find each other, sending adoption requests to owners that will have an account in the application,being possibly to find your little buddy on the dashboard or leaving the pet for adoption if you can't take care of the animal.
