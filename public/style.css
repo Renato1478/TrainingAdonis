@@ -23,15 +23,9 @@ background: #555;
 
 /* IMG INPUT CONFIG */
 label.image {
-    border: 1px solid #4e73df;
-    border-radius: 24px;
-    background-size: cover;
     cursor: pointer;
-    display: flex;
-    height: 20rem;
     justify-content: center;
     align-items: center;
-    margin-bottom: 4%;
 }
 
 label.image input{
@@ -67,48 +61,69 @@ label.image input{
     border-radius: 4px;
 }
 
-.carousel-inner > .carousel-item > img {
+.carousel-item {
     height: 60vh;
 }
 
 .carousel-item > img {
     display: block;
     margin: 0 auto;
+    height: 100%;
 }
+
+.carousel-item > label.image {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.carousel-item > label.image input{
+    display: none;
+}
+
 /* END CAROUSEL CONFIGS */
 
 /* PET CARD */
 .pet-card {
-background-color: rgba(0,0,0,0.4);
-background-repeat: no-repeat;
-background-position: center center;
+    background-color: rgba(0,0,0,0.4) no-repeat;
+    background-position: center center;
+    background-size: auto 100%; 
 background-size: auto 100%; 
-transition: 0.5s ease;
-cursor: pointer;
-border: none;
-border-radius: 2%;
-padding: 1%;
+    background-size: auto 100%; 
+background-size: auto 100%; 
+    background-size: auto 100%; 
+    transition: 0.5s ease;
+    cursor: pointer;
+    border: none;
+    border-radius: 2%;
+    padding: 1%;
 }
 
 .pet-card-content {
-font-size: 1.3vw;
-width: 100%;
-color: #FFF;
-margin: 4%;
-text-shadow: 1px 1px 2px #000;
+    font-size: 1.3vw;
+    width: 100%;
+    color: #FFF;
+    margin: 4%;
+    text-shadow: 1px 1px 2px #000;
 }
 
 .pet-card:hover {
-transform: scale(1.05);
-box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    transform: scale(1.05);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
 }
 
 .card-pet-name {
-width: 100%;
+    width: 100%;
+    padding-top: 110%; 
 padding-top: 110%; 
+    padding-top: 110%; 
+padding-top: 110%; 
+    padding-top: 110%; 
 }
 
 .card-pet-address {
-font-size: 1vw;
+    font-size: 1vw;
 }
 /* END PET CARD */

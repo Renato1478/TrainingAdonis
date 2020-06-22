@@ -17,4 +17,5 @@ Route.group(() => {
     Route.resource('pets','PetController').validator(new Map([
         [['pets.store'], ['StorePet']]
     ]))
+    Route.post('/upload_pet_image/:id','PetController.uploadImage').as('pets.upload_image')
 }).middleware(['auth'])

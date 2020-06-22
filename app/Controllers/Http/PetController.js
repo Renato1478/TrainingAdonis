@@ -2,6 +2,7 @@
 
 const Pet = use('App/Models/Pet')
 const Helpers = use('Helpers')
+const fs = require("fs");
 
 class PetController {
   async index() {
@@ -15,7 +16,6 @@ class PetController {
 
   async store ({ request, response, session, auth }) {
     try {
-
       const petData = request.except(['_csrf','main_pic'])
       petData.donor_id = auth.user.id
 
@@ -28,7 +28,7 @@ class PetController {
       })
 
       if(mainPic){
-        pet.main_pic = new Date().getTime() + mainPic.subtype
+        pet.main_pic = new Date().getTime() +'.'+ mainPic.subtype
 
         await mainPic.move(Helpers.publicPath('img/pets/'+pet.id), {
             name: pet.main_pic,
@@ -44,27 +44,19 @@ class PetController {
 
       session.flash({success: 'Pet registrado com sucesso!' })
       return response.redirect('/') 
-    } 
-    catch (error) {
+    } catch (error) {
       return response.redirect('back')
     }
   }
 
   async edit ({ params, response, view, session }) {
-    try {
-
       const pet = await Pet.find(params.id)
-
-      return response.send(view.render('pets.edit', { pet: pet.toJSON() }))
-    } 
-    catch (error) {
-      return response.redirect('back')
-    }
+      const images = fs.readdirSync(Helpers.publicPath('img/pets/'+pet.id));
+      return response.send(view.render('pets.edit', { pet: pet.toJSON(), images })) 
   }
 
   async update ({ params, request, response, session }) {
     try {
-
       const pet = await Pet.find(params.id)
       pet.merge(request.except(['_csrf','_method']))
 
@@ -79,17 +71,44 @@ class PetController {
   }
 
   async show ({ params, response, view, session }) {
-    try {
-
-      const pet = await Pet.find(params.id)
-
-      return response.send(view.render('pets.show', { pet: pet.toJSON() }))
-    } 
-    catch (error) {
-      return response.redirect('back')
-    }
+    const pet = await Pet.find(params.id)
+    const images = fs.readdirSync(Helpers.publicPath('img/pets/'+pet.id));
+    return response.send(view.render('pets.show', { pet: pet.toJSON(), images }))
   }
-  
+
+  async uploadImage ({ params, request, response, session  }) {
+    let responseJson = {
+      type: 'success'
+    }
+
+    const pet = await Pet.find(params.id)
+    
+    const pic = request.file('image', {
+      types: ['image'],
+      size: '2mb'
+    })
+    if(pic){
+      let picName = new Date().getTime() +'.'+ pic.subtype
+
+      await pic.move(Helpers.publicPath('img/pets/'+pet.id), {
+          name: picName,
+      })
+
+      if (!pic.moved()) {
+        responseJson = {
+          type: 'error',
+          message: 'Erro ao salvar imagem'
+        }   
+      }
+    } else {
+      responseJson = {
+        type: 'error',
+        message: 'Erro ao enviar imagem'
+      }
+    }
+
+    return response.send(responseJson)
+  }
 }
 
 module.exports = PetController

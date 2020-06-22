@@ -21,6 +21,14 @@ class ExceptionHandler extends BaseExceptionHandler {
    * @return {void}
    */
   async handle (error, { request, response, view }) {
+    const bestFormat = request.accepts(['json', 'html'])
+
+    if (bestFormat === 'json') {
+      return response.status(error.status).send({
+        message: error.message
+      })
+    }
+
     response.status(error.status).send(view.render('error.error', {error}))
   }
 
