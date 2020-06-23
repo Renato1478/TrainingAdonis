@@ -90,33 +90,34 @@
 <!-- Sweet Alert 2 -->
 {{ script('vendor/sweetAlert2/sweetAlert2.all.min.js') }}
 
-@!section('extra-js')
+<script>
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom-end',
+  showConfirmButton: false,
+  timer: 7000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 
 @if(flashMessage('success'))
-<script>
-  const Toast = Swal.mixin({
-    toast: true,
-    position: 'top',
-    showConfirmButton: false,
-    background: 'rgb(79, 222, 39)',
-    timer: 6000,
-    timerProgressBar: true,
-    onOpen: (toast) => {
-      toast.addEventListener('mouseenter', Swal.stopTimer)
-      toast.addEventListener('mouseleave', Swal.resumeTimer)
-    }
-  })
-
   Toast.fire({
-    title: "{{flashMessage('success')}}"
+    title: "{{flashMessage('success')}}",
+    icon: "success"
   })
-</script>
 @endif
 
 @if(flashMessage('error'))
-<script>
-  console.log("{{flashMessage('error')}}")
-</script>
+  Toast.fire({
+    title: "{{flashMessage('error')}}",
+    icon: "error"
+  })
 @endif
+</script>
+
+@!section('extra-js')
 
 </html>
