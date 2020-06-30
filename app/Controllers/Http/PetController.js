@@ -1,8 +1,10 @@
 'use strict'
 
-const Pet = use('App/Models/Pet')
 const Helpers = use('Helpers')
 const fs = require("fs");
+
+const Pet = use('App/Models/Pet')
+const PetRequest = use('App/Models/PetRequest')
 
 class PetController {
   async index() {
@@ -16,26 +18,26 @@ class PetController {
 
   async store ({ request, response, session, auth }) {
     try {
-      const petData = request.except(['_csrf','main_pic'])
+      const petData = request.except(['_csrf','profile_pic'])
       petData.donor_id = auth.user.id
 
       const pet = await Pet.create(petData) 
       
       // submit the main picture // 
-      const mainPic = request.file('main_pic', {
+      const profile_pic = request.file('profile_pic', {
         types: ['image'],
         size: '2mb'
       })
 
-      if(mainPic){
-        pet.main_pic = new Date().getTime() +'.'+ mainPic.subtype
+      if(profile_pic){
+        pet.profile_pic = new Date().getTime() +'.'+ profile_pic.subtype
 
-        await mainPic.move(Helpers.publicPath('img/pets/'+pet.id), {
-            name: pet.main_pic,
+        await profile_pic.move(Helpers.publicPath('img/pets/'+pet.id), {
+            name: pet.profile_pic,
             overwrite: true
         })
     
-        if (!mainPic.moved()) {   
+        if (!profile_pic.moved()) {   
             session.flash({ error: 'Ocorreu um erro ao subir a imagem' })
             return response.redirect('back')
         }
@@ -45,7 +47,8 @@ class PetController {
       session.flash({success: 'Pet registrado com sucesso!' })
       return response.redirect('/') 
     } catch (error) {
-      return response.redirect('back')
+      session.flash({error: error.message })
+      return response.redirect('/')
     }
   }
 
@@ -64,19 +67,27 @@ class PetController {
 
       session.flash({success: 'Pet salvo com sucesso!' })
       return response.redirect('/')
-    } 
-    catch (error) {
+    } catch (error) {
       return response.redirect('back')
     }
   }
 
-  async show ({ params, response, view, session }) {
+  async show ({ params, response, view, session, auth }) {
     const pet = await Pet.find(params.id)
+    const pet_requests = await PetRequest
+        .query()
+        .where('adopter_id','=', auth.user.id)
+        .fetch()
     const images = fs.readdirSync(Helpers.publicPath('img/pets/'+pet.id));
-    return response.send(view.render('pets.show', { pet: pet.toJSON(), images }))
+
+    return response.send(view.render('pets.show', { 
+      pet: pet.toJSON(),
+      images,
+      pet_requests: pet_requests.toJSON() 
+    }))
   }
 
-  async uploadImage ({ params, request, response, session  }) {
+  async uploadImage ({ params, request, response  }) {
     let responseJson = {
       type: 'success'
     }

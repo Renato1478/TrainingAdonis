@@ -12,7 +12,7 @@ class StorePet {
       'gender': 'required',
       'state': 'required',
       'county': 'required',
-      'main_pic': 'required',
+      'profile_pic': 'required',
     }
   }
 

@@ -8,7 +8,7 @@ Home
 <style>
 .pets-dashboard {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-row-gap: 30px;
   grid-column-gap: 20px;
   margin: 2%;
@@ -21,13 +21,13 @@ Home
 
 <!-- Page Heading -->
 <div class="mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Pets for adoption</h1>
+    <h1 class="h3 mb-0 text-gray-800">Pets para adoção</h1>
 </div>
 
 <div class="card-deck m-0 mt-2 mb-4 pets-dashboard">
   @each(pet in pets)
   <a href="{{ route('pets.show', { id: pet.id }) }}">
-    <div class="pet-card" style="background-image: url('{{ assetsUrl('img/pets/' + pet.id + '/' + pet.main_pic) }}')">
+    <div class="pet-card" style="background-image: url('{{ assetsUrl('img/pets/' + pet.id + '/' + pet.profile_pic) }}')">
       <div class="pet-card-content">
         <div class="card-pet-address">
           <i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> {{ pet.county }} ● {{ pet.state }} 
@@ -51,9 +51,9 @@ Home
     const container = $('.pets-dashboard');
 
     if (width < 768){
-      container.css("grid-template-columns","1fr 1fr 1fr 1fr");
+      container.css("grid-template-columns","1fr 1fr 1fr");
     } else {
-      container.css("grid-template-columns","1fr 1fr 1fr 1fr 1fr 1fr");
+      container.css("grid-template-columns","1fr 1fr 1fr 1fr 1fr");
     }
   }
 

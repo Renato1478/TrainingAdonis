@@ -13,9 +13,11 @@ Route.get('/logout','AuthController.logout').as('auth.logout')
 
 Route.group(() => {
     Route.get('/','DashboardController.index').as('home')
-    //PET
+    //Pet
     Route.resource('pets','PetController').validator(new Map([
         [['pets.store'], ['StorePet']]
     ]))
     Route.post('/upload_pet_image/:id','PetController.uploadImage').as('pets.upload_image')
+    //Request
+    Route.resource('pedidos','PetRequestController')
 }).middleware(['auth'])

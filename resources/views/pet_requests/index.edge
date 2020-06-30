@@ -1,0 +1,29 @@
+@layout('layouts.main')
+
+@section('title')
+Pedidos 
+@endsection
+
+@section('extra-css')
+@endsection
+
+@section('content')
+
+<!-- Page Heading -->
+<div class="mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Seus pedidos de adoção</h1>
+</div>
+
+<div class="request-list">
+  @each(request in pet_requests)
+    <div>
+      {{ request.id }}
+      {{ request.pet_id }}
+    </div>
+  @endeach
+</div> 
+
+@endsection
+
+@section('extra-js')
+@endsection

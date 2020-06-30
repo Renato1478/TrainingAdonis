@@ -4,7 +4,7 @@
 Signup
 @endsection
 
-@section('extracss')
+@section('extra-css')
 <style>
     label.image{
         border: 1px solid #4e73df;
@@ -93,7 +93,7 @@ Signup
             <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
         </div>
         <div class="col-sm-6">
-            <input type="password" class="form-control form-control-user" id="passwordConfirm" name="passwordConfirm" placeholder="Repeat Password">
+            <input type="password" class="form-control form-control-user" id="passwordConfirm" placeholder="Repeat Password">
         </div>
         @if(hasErrorFor('password'))
             <span >{{ getErrorFor('password') }}</span>

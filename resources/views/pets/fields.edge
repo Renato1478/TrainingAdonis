@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-4">
         <label class="image">
-            <input type="file" name="main_pic" id="main_pic">
+            <input type="file" name="profile_pic" id="profile_pic">
             <i class="fa fa-camera"></i>
         </label>
     </div>
@@ -12,7 +12,7 @@
                 <input type="text" class="form-control" id="name" name="name"
                 value="{{ old('name','') }}">
                 @if(hasErrorFor('name'))
-                    <span class="error">
+                    <span class="flashError">
                         {{ getErrorFor('name') }}
                     </span>
                 @endif
@@ -23,7 +23,7 @@
                 <input type="text" class="form-control" id="breed" name="breed"
                 value="{{ old('breed','') }}">
                 @if(hasErrorFor('breed'))
-                    <span class="error">
+                    <span class="flashError">
                         {{ getErrorFor('breed') }}
                     </span>
                 @endif
@@ -39,7 +39,7 @@
                     <option value="idoso">Idoso</option>
                 </select>
                 @if(hasErrorFor('age'))
-                    <span class="error">
+                    <span class="flashError">
                         {{ getErrorFor('age') }}
                     </span>
                 @endif
@@ -51,7 +51,7 @@
                     <option value="feminino">Feminino</option>
                 </select>
                 @if(hasErrorFor('size'))
-                    <span class="error">
+                    <span class="flashError">
                         {{ getErrorFor('size') }}
                     </span>
                 @endif
@@ -67,7 +67,7 @@
                     <option value="outro">outro</option>
                 </select>
                 @if(hasErrorFor('type'))
-                    <span class="error">
+                    <span class="flashError">
                         {{ getErrorFor('type') }}
                     </span>
                 @endif
@@ -81,7 +81,7 @@
                     <option value="medio">médio</option>
                 </select>
                 @if(hasErrorFor('size'))
-                    <span class="error">
+                    <span class="flashError">
                         {{ getErrorFor('size') }}
                     </span>
                 @endif
@@ -92,7 +92,7 @@
                 <label for="state">Estado</label>
                 <input type="text" class="form-control" id="state" name="state" value="{{ old('state','') }}">
                 @if(hasErrorFor('state'))
-                    <span class="error">
+                    <span class="flashError">
                         {{ getErrorFor('state') }}
                     </span>
                 @endif
@@ -102,7 +102,7 @@
                 <label for="county">Município</label>
                 <input type="text" class="form-control" id="county" name="county" value="{{ old('county','') }}">
                 @if(hasErrorFor('county'))
-                    <span class="error">
+                    <span class="flashError">
                         {{ getErrorFor('county') }}
                     </span>
                 @endif
@@ -117,7 +117,7 @@
         <input type="text" class="form-control" id="adoption_fee" name="adoption_fee"
         value="{{ old('adoption_fee','') }}">
         @if(hasErrorFor('adoption_fee'))
-            <span class="error">
+            <span class="flashError">
                 {{ getErrorFor('adoption_fee') }}
             </span>
         @endif
@@ -127,7 +127,7 @@
             <label for="description">Descrição</label>
             <textarea class="form-control" id="description" name="description" rows="4" style="resize: none">{{ old('description','') }}</textarea>
             @if(hasErrorFor('description'))
-                <span class="error">
+                <span class="flashError">
                     {{ getErrorFor('description') }}
                 </span>
             @endif

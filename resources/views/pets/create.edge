@@ -33,7 +33,7 @@
 @section('extra-js')
 <script>
     
-    $('#main_pic').change( function(){
+    $('#profile_pic').change( function(){
         thumbnail = this.files[0];
         thumbnailURL = window.URL.createObjectURL(thumbnail);
         $('.image').css('background-image', 'url(' + thumbnailURL + ')');

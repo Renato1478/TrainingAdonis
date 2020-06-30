@@ -41,7 +41,7 @@ h5 {
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner mb-4">
       @each(image in images)
-        @if(image == pet.main_pic)
+        @if(image == pet.profile_pic)
           <div class="carousel-item active">
             <img src="{{ assetsUrl('img/pets/' + pet.id + '/' + image) }}">
           </div>
@@ -67,8 +67,23 @@ h5 {
     <div class="pet-title">{{ pet.name }} - {{ pet.breed }}</div>
     @if(auth.user.id == pet.donor_id)
       <div style="text-align:center">
-        <a href="{{ route('pets.edit', { id: pet.id }) }}" class="btn btn-success"><i class="fa fa-fw fa-pencil" aria-hidden="true" title="Editar"></i></a>
+        <a href="{{ route('pets.edit', { id: pet.id }) }}" class="btn btn-primary"><i class="fa fa-fw fa-pencil" aria-hidden="true" title="Editar"></i></a>
       </div>
+    @elseif(pet_requests.length)
+      <div style="text-align:center">
+        <span class="badge badge-secondary p-3">
+          <b>Adoção pendente</b> <i class="fa fa-fw fa-legal" aria-hidden="true"></i>
+        </span>
+      </div> 
+    @else
+      <div style="text-align:center">
+        <form method="POST" action="{{ route('pedidos.store') }}">
+          <input type="hidden" id="pet_id" name="pet_id" value="{{ pet.id }}">
+          <button type="submit" class="btn btn-success">
+            <b>Pedido de Adoção</b> <i class="fa fa-fw fa-plus" aria-hidden="true" title="Enviar pedido"></i>
+          </button>
+        </form>
+      </div> 
     @endif
   </div>
   <div class="container-fluid pet-info">

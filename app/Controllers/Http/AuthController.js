@@ -10,15 +10,7 @@ class AuthController {
     }
 
     async store({ request, response, auth, session }) {
-        const userData = request.only([
-            'email',
-            'name',
-            'surname',
-            'password',
-            'pet_type_pref',
-            'state',
-            'county'
-        ])
+        const userData = request.except(['_csrf'])
 
         const profilePic = request.file('profile_pic', {
             types: ['image'],

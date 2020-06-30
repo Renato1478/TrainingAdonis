@@ -35,7 +35,7 @@ label.image input{
 
 .flashError{
     padding: 4px;
-    color: rgb(32, 32, 32);
+    color: rgb(241, 245, 248);
     background-color: rgb(172, 80, 80);
     border-radius: 6px;
     align-self: center;

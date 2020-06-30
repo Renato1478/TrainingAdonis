@@ -108,14 +108,18 @@ const Toast = Swal.mixin({
     title: "{{flashMessage('success')}}",
     icon: "success"
   })
-@endif
-
-@if(flashMessage('error'))
+@elseif(flashMessage('error'))
   Toast.fire({
     title: "{{flashMessage('error')}}",
     icon: "error"
   })
+@elseif(flashMessage('info'))
+  Toast.fire({
+    title: "{{flashMessage('info')}}",
+    icon: "info"
+  })
 @endif
+
 </script>
 
 @!section('extra-js')
