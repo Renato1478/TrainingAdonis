@@ -9,9 +9,16 @@ class PetRequestController {
     const petRequests = await Database
         .table('pet_requests')
         .select(
-          'pet_requests.id',
-          'donors.id as donor_id',
-          'pet_requests.pet_id',
+          'pet_requests.id',                          // pet_requests
+          'pets.id as pet_id',                        // pets
+          'pets.name as pet_name',
+          'pets.profile_pic as pet_profile_pic', 
+          'pets.description as pet_description', 
+          'pets.state as pet_state',
+          'pets.county as pet_county',      
+          'donors.id as donor_id',                    //donor
+          'donors.name as donor_name', 
+          'donors.profile_pic as donor_profile_pic',
         )
         .innerJoin('pets', 'pet_requests.pet_id', 'pets.id')
         .innerJoin('users as donors', 'pets.donor_id', 'donors.id')

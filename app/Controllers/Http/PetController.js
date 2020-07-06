@@ -77,6 +77,7 @@ class PetController {
     const pet_requests = await PetRequest
         .query()
         .where('adopter_id','=', auth.user.id)
+        .andWhere('pet_id', '=', pet.id)
         .fetch()
     const images = fs.readdirSync(Helpers.publicPath('img/pets/'+pet.id));
 

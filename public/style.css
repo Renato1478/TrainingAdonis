@@ -12,13 +12,13 @@ a {
     width: 0.5rem;
 }
 ::-webkit-scrollbar-track {
-background: #f1f1f1; 
+    background: #f1f1f1; 
 }
 ::-webkit-scrollbar-thumb {
-background: #888; 
+    background: #888; 
 }
 ::-webkit-scrollbar-thumb:hover {
-background: #555; 
+    background: #555; 
 }
 
 /* IMG INPUT CONFIG */
@@ -90,10 +90,6 @@ label.image input{
     background-color: rgba(0,0,0,0.4) no-repeat;
     background-position: center center;
     background-size: auto 100%; 
-background-size: auto 100%; 
-    background-size: auto 100%; 
-background-size: auto 100%; 
-    background-size: auto 100%; 
     transition: 0.5s ease;
     cursor: pointer;
     border: none;
@@ -116,10 +112,6 @@ background-size: auto 100%;
 
 .card-pet-name {
     width: 100%;
-    padding-top: 110%; 
-padding-top: 110%; 
-    padding-top: 110%; 
-padding-top: 110%; 
     padding-top: 110%; 
 }
 
