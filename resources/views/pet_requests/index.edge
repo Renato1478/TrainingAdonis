@@ -12,9 +12,17 @@ Pedidos
   }
 
   .pet-img {
-    width: 300px;
-    height: 130px;
+    max-width: 300px;
+    max-height: 130px;
   }
+
+  .pet-requests {
+    display: grid;
+    column-gap: 30px;
+    row-gap: 25px;
+    grid-template-columns: repeat(auto-fit ,minmax(360px, 1fr));
+  }
+
 </style>
 @endsection
 
@@ -25,22 +33,20 @@ Pedidos
     <h1 class="h3 mb-0 text-gray-800">Seus pedidos de adoção</h1>
 </div>
 
-<div class="row">
+<div class="pet-requests">
   @each(request in pet_requests)
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-horizontal">
-          <div class="img-square-wrapper">
-            <img class="pet-img" src="img/pets/{{ request.pet_id }}/{{ request.pet_profile_pic }}" alt="{{ request.pet_name }}">
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">{{ request.pet_name }}</h4>
-            <p class="card-text">{{ request.pet_state }} - {{ request.pet_county }}</p>
-          </div>
+    <div class="card">
+      <div class="card-horizontal">
+        <div class="img-square-wrapper">
+          <img class="pet-img" src="img/pets/{{ request.pet_id }}/{{ request.pet_profile_pic }}" alt="{{ request.pet_name }}">
         </div>
-        <div class="card-footer">
-          <small class="text-muted">Doador: {{ request.donor_name }}</small>
+        <div class="card-body">
+          <h4 class="card-title">{{ request.pet_name }}</h4>
+          <p class="card-text">{{ request.pet_state }} - {{ request.pet_county }}</p>
         </div>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Doador: {{ request.donor_name }}</small>
       </div>
     </div>
   @endeach

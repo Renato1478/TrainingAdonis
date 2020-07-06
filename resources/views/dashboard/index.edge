@@ -8,7 +8,6 @@ Home
 <style>
 .pets-dashboard {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-row-gap: 30px;
   grid-column-gap: 20px;
   margin: 2%;
@@ -50,7 +49,9 @@ Home
     const width = $(window).width();
     const container = $('.pets-dashboard');
 
-    if (width < 768){
+    if (width < 768) {
+      container.css("grid-template-columns","1fr 1fr");
+    } else if (width < 1200){
       container.css("grid-template-columns","1fr 1fr 1fr");
     } else {
       container.css("grid-template-columns","1fr 1fr 1fr 1fr 1fr");
