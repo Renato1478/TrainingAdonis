@@ -11,21 +11,19 @@ Login
     <div class="text-center">
         <h1 class="h4 text-gray-900 mb-4">Bem vindo!</h1>
     </div>
-    @if(flashMessage('error'))
-        <div class="flashError">{{ flashMessage('error') }}</div>
-    @endif
+
     {{ csrfField() }}
     <div class="form-group">
         <input type="email" class="form-control form-control-user" id="email" name="email" aria-describedby="emailHelp" placeholder="Digite seu Email..."
         value="{{ old('email','') }}">
         @if(hasErrorFor('email'))
-            <span>{{ getErrorFor('email') }}</span>
+            <span class="flashError">{{ getErrorFor('email') }}</span>
         @endif
     </div>
     <div class="form-group">
         <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Senha">
         @if(hasErrorFor('password'))
-            <span>{{ getErrorFor('password') }}</span>
+            <span class="flashError">{{ getErrorFor('password') }}</span>
         @endif
     </div>
     <div class="form-group">
@@ -39,7 +37,7 @@ Login
     </button>
     <hr>
     <div class="text-center">
-        <a class="small" href="{{ route('auth.signup') }}">Create an Account!</a>
+        <a class="small" href="{{ route('auth.signup') }}">Crie uma conta!</a>
     </div>
 </div>
 </form>

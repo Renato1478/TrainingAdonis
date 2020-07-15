@@ -34,7 +34,9 @@ label.image input{
 /* END IMG INPUT CONFIG */
 
 .flashError{
-    padding: 4px;
+    padding: 3px;
+    padding-top: 1px;
+    padding-bottom: 1px;
     color: rgb(241, 245, 248);
     background-color: rgb(172, 80, 80);
     border-radius: 6px;
@@ -43,7 +45,6 @@ label.image input{
     justify-items: center;
     align-items: center;
     justify-content: center;
-    margin: 5px;
 }
 
 .container-fluid {
@@ -98,7 +99,7 @@ label.image input{
 }
 
 .pet-card-content {
-    font-size: 1.3vw;
+    font-size: 2.4vmin;
     width: 100%;
     color: #FFF;
     margin: 4%;
@@ -116,6 +117,6 @@ label.image input{
 }
 
 .card-pet-address {
-    font-size: 1vw;
+    font-size: 120%;
 }
 /* END PET CARD */

@@ -19,7 +19,7 @@ Signup
 @section('content')
 
 
-<form method="POST" action="{{ route('auth.store') }}" class="user d-flex p-4" style="flex-direction: column" enctype="multipart/form-data">
+<form method="POST" id="form_signup" action="{{ route('auth.store') }}" class="p-4" style="flex-direction: column" enctype="multipart/form-data">
 
 <div class="text-center">
     <h1 class="h4 text-gray-900 mb-4">Crie uma conta!</h1>
@@ -27,24 +27,20 @@ Signup
 
 <!-- STEP 0 -->
 <div id="step-0" class="step">
-    @if(flashMessage('error'))
-        <span class="flashError">{{ flashMessage('error') }}</span>
-    @endif
-
     {{ csrfField() }}
     <div class="form-group row">
         <div class="col-sm-6 mb-3 mb-sm-0">
             <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Nome"
             value="{{ old('name','') }}">
             @if(hasErrorFor('name'))
-                <span >{{ getErrorFor('name') }}</span>
+                <span class="flashError">{{ getErrorFor('name') }}</span>
             @endif
         </div>
         <div class="col-sm-6">
             <input type="text" class="form-control form-control-user" id="surname" name="surname" placeholder="Sobrenome"
             value="{{ old('surname','') }}">
             @if(hasErrorFor('surname'))
-                <span >{{ getErrorFor('surname') }}</span>
+                <span class="flashError">{{ getErrorFor('surname') }}</span>
             @endif
         </div>
     </div>
@@ -53,14 +49,14 @@ Signup
             <input type="text" class="form-control form-control-user" id="state" name="state" placeholder="Estado"
             value="{{ old('state','') }}">
             @if(hasErrorFor('state'))
-                <span >{{ getErrorFor('state') }}</span>
+                <span class="flashError">{{ getErrorFor('state') }}</span>
             @endif
         </div>
         <div class="col-sm-6">
             <input type="text" class="form-control form-control-user" id="county" name="county" placeholder="Município"
             value="{{ old('county','') }}">
             @if(hasErrorFor('county'))
-                <span >{{ getErrorFor('county') }}</span>
+                <span class="flashError">{{ getErrorFor('county') }}</span>
             @endif
         </div>
     </div>
@@ -68,7 +64,7 @@ Signup
         <input type="text" class="form-control form-control-user" id="pet_type_pref" name="pet_type_pref" placeholder="Preferência de Pet (cão, gato ou outro)"
         value="{{ old('pet_type_pref','') }}">
         @if(hasErrorFor('pet_type_pref'))
-            <span >{{ getErrorFor('pet_type_pref') }}</span>
+            <span class="flashError">{{ getErrorFor('pet_type_pref') }}</span>
         @endif
     </div>
     <a href="#step-1" class="btn-step btn btn-primary btn-user btn-block">
@@ -81,22 +77,22 @@ Signup
 <div id="step-1" class="d-none step">
     <div class="form-group row">
         <div class="col-sm-12">
-            <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email Address"
+            <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email"
             value="{{ old('email','') }}">
             @if(hasErrorFor('email'))
-                <span >{{ getErrorFor('email') }}</span>
+                <span class="flashError">{{ getErrorFor('email') }}</span>
             @endif
         </div>
     </div>
     <div class="form-group row">
         <div class="col-sm-6 mb-3 mb-sm-0">
-            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Password">
+            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Senha">
         </div>
         <div class="col-sm-6">
-            <input type="password" class="form-control form-control-user" id="passwordConfirm" placeholder="Repeat Password">
+            <input type="password" class="form-control form-control-user" id="password_confirm" placeholder="Repita a senha">
         </div>
         @if(hasErrorFor('password'))
-            <span >{{ getErrorFor('password') }}</span>
+            <span class="flashError">{{ getErrorFor('password') }}</span>
         @endif
     </div>
     <a type="button" href="#step-2" class="btn-step btn btn-primary btn-user btn-block">
@@ -130,10 +126,7 @@ Signup
 <script>
     //STEPPER
     $( document ).ready(function() {
-        step = window.location.hash;
-        if(!step) {
-            window.location.hash = '#step-0';
-        }
+        window.location.hash = '#step-0';
     });
 
     window.onhashchange = function () {
@@ -154,6 +147,18 @@ Signup
         $('.image').css('background-image', 'url(' + thumbnailURL + ')');
     });
 
-
+    $('form_signup').on('submit', function (e) {
+        e.preventDefault();
+        let psswrd = $('password').val();
+        let psswrdConfirm = $('password_confirm').val();
+        if(passwrd == psswrdConfirm) {
+            // this.submit();
+        } else {
+            Toast.fire({
+                title: "A senha deve ser repetida corretamente",
+                icon: "error"
+            });
+        }
+    });
 </script>
 @endsection

@@ -59,24 +59,36 @@
 
 @!section('extra-js')
 
-@if(flashMessage('success'))
 <script>
   const Toast = Swal.mixin({
     toast: true,
-    position: 'top',
+    position: 'bottom-end',
     showConfirmButton: false,
-    background: 'rgb(79, 222, 39)',
+    timer: 7000,
     timerProgressBar: true,
-    timer: 6000,
     onOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
     }
   })
+  
+  @if(flashMessage('success'))
+    Toast.fire({
+      title: "{{flashMessage('success')}}",
+      icon: "success"
+    })
+  @elseif(flashMessage('error'))
+    Toast.fire({
+      title: "{{flashMessage('error')}}",
+      icon: "error"
+    })
+  @elseif(flashMessage('info'))
+    Toast.fire({
+      title: "{{flashMessage('info')}}",
+      icon: "info"
+    })
+  @endif
 
-  Toast.fire({
-    title: "{{flashMessage('success')}}"
-  })
 </script>
 @endif
 
