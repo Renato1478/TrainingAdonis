@@ -13,7 +13,7 @@ adonis migration:run
 adonis serve --dev
 ```
 
-Now is just acces you localhost:3333/login on browser, create an User and access.
+Now is just access your localhost:3333/login on browser, create an User and access.
 
 ### Application Concept
   This app basically consists in a project for my learnings in the AdonisJS framework. 
