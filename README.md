@@ -1,19 +1,6 @@
-# Adonis fullstack application
-This is the fullstack boilerplate for AdonisJs, it comes pre-configured with.
-1. Bodyparser
-2. Session
-3. Authentication
-4. Web security middleware
-5. CORS
-6. Edge template engine
-7. Lucid ORM
-8. Migrations and seeds
+# This is a Adonis FullStack App
 
 ## Setup
-Use the adonis command to install the blueprint
-```bash
-adonis new yardstick
-```
 or manually clone the repo and then run `npm install`.
 
 ### Migrations
@@ -21,7 +8,22 @@ Run the following command to run startup migrations.
 ```js
 adonis migration:run
 ```
-### APPLICATION CONCEPT ####
-  this app basically consists in a project for my learnings in the AdonisJS framework. 
+### Starting the App
+```js
+adonis serve --dev
+```
 
-  The website is to help pets and adopters to find each other, sending adoption requests to owners that will have an account in the application,being possibly to find your little buddy on the dashboard or leaving the pet for adoption if you can't take care of the animal.
+Now is just acces you localhost:3333/login on browser, create an User and access.
+
+### Application Concept
+  This app basically consists in a project for my learnings in the AdonisJS framework. 
+
+  The website is to help pets and adopters to find each other, sending adoption requests to owners that will have an account in the application,
+  being possibly to find your little buddy on the dashboard or leaving the pet for adoption if you can't take care of the animal.
+  
+### I'm not actually working on this idea in this repository
+  
+  But feel free to contribute.
+  
+  I have continued this project, but in other stacks and frameworks. I've just decided to develop this ideas with more affection,
+  making the project by the absolute 0, by the design to execution.
